@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+	<link href="https://unpkg.com/maplibre-gl@3.5.2/dist/maplibre-gl.css" rel="stylesheet" />
+	<style>
+		body { background-color: #f0fdf4; }
+		#map { height: 450px; width: 100%; border-radius: 12px; margin-top: 16px; }
+		.hero-banner { background: linear-gradient(135deg, #1b5e20 0%, #388e3c 50%, #66bb6a 100%); color: white; border-radius: 12px; padding: 40px; margin-top: 16px; }
+		.card-destination { border: none; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); transition: transform .2s; cursor: pointer; }
+		.card-destination:hover { transform: translateY(-4px); }
+	</style>
+	<title>Trang chủ - Địa điểm du lịch Việt Nam</title>
+</head>
+<body>
+<div class="container">
+	<%- include('navbar') %>
+
+	<!-- Hero Banner -->
+	<div class="hero-banner mt-3">
+		<h1 class="fw-bold">🌴 Khám phá Việt Nam</h1>
+		<p class="lead mb-3">Tìm kiếm những địa điểm du lịch tuyệt vời từ Bắc chí Nam</p>
+		<a href="/sinhvien" class="btn btn-light btn-lg"><i class="bi bi-compass"></i> Xem danh sách địa điểm</a>
+	</div>
+
+	<!-- Thời tiết -->
+	<div id="weather" class="alert alert-info mt-3">
+		<i class="bi bi-cloud-sun"></i> Đang tải thời tiết Hà Nội...
+	</div>
+
+	<!-- Bản đồ -->
+	<div class="card mt-3">
+		<div class="card-header bg-success text-white">
+			<i class="bi bi-map"></i> Bản đồ các địa điểm du lịch nổi bật
+		</div>
+		<div class="card-body p-2">
+			<div id="map"></div>
+		</div>
+	</div>
+
+	<!-- Giới thiệu nhanh 3 vùng -->
+	<div class="row mt-4 g-3">
+		<div class="col-md-4">
+			<div class="card card-destination">
+				<div class="card-body text-center">
+					<div style="font-size:3rem">🏔️</div>
+					<h5 class="fw-bold mt-2">Miền Bắc</h5>
+					<p class="text-muted small">Hà Nội, Sapa, Hà Giang, Ninh Bình — núi non hùng vĩ và văn hóa nghìn năm</p>
+					<a href="/sinhvien" class="btn btn-outline-success btn-sm">Khám phá</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card card-destination">
+				<div class="card-body text-center">
+					<div style="font-size:3rem">🏖️</div>
+					<h5 class="fw-bold mt-2">Miền Trung</h5>
+					<p class="text-muted small">Đà Nẵng, Hội An, Huế, Nha Trang — biển xanh và di sản văn hóa thế giới</p>
+					<a href="/sinhvien" class="btn btn-outline-success btn-sm">Khám phá</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="card card-destination">
+				<div class="card-body text-center">
+					<div style="font-size:3rem">🌾</div>
+					<h5 class="fw-bold mt-2">Miền Nam</h5>
+					<p class="text-muted small">TP.HCM, Phú Quốc, Cần Thơ, Đà Lạt — sầm uất và thiên nhiên phong phú</p>
+					<a href="/sinhvien" class="btn btn-outline-success btn-sm">Khám phá</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%- include('footer') %>
+</div>
+
+<%- include('javascript') %>
+<script src="https://unpkg.com/maplibre-gl@3.5.2/dist/maplibre-gl.js"></script>
+<script>
+	const map = new maplibregl.Map({
+		container: 'map',
+		style: 'https://api.maptiler.com/maps/streets/style.json?key=mztyHSEledNaviiGfWNU',
+		center: [106.0, 16.5],
+		zoom: 5
+	});
+	map.addControl(new maplibregl.NavigationControl());
+
+	const diem = [
+		{ name: 'Hồ Hoàn Kiếm, Hà Nội', lng: 105.8522, lat: 21.0285 },
+		{ name: 'Tràng An, Ninh Bình', lng: 105.9170, lat: 20.2635 },
+		{ name: 'Phố cổ Hội An', lng: 108.3261, lat: 15.8801 },
+		{ name: 'Đại Nội Huế', lng: 107.5785, lat: 16.4699 },
+		{ name: 'Bãi biển Mỹ Khê, Đà Nẵng', lng: 108.2533, lat: 16.0544 },
+		{ name: 'Vịnh Nha Trang', lng: 109.1967, lat: 12.2388 },
+		{ name: 'Hồ Xuân Hương, Đà Lạt', lng: 108.4373, lat: 11.9404 },
+		{ name: 'Phú Quốc', lng: 103.9800, lat: 10.3932 },
+		{ name: 'Chợ nổi Cái Răng, Cần Thơ', lng: 105.7899, lat: 10.0133 },
+		{ name: 'Cột cờ Lũng Cú, Hà Giang', lng: 105.3358, lat: 23.3589 }
+	];
+
+	diem.forEach(d => {
+		new maplibregl.Marker({ color: '#2e7d32' })
+			.setLngLat([d.lng, d.lat])
+			.setPopup(new maplibregl.Popup().setHTML('<b>🗺️ ' + d.name + '</b>'))
+			.addTo(map);
+	});
+</script>
+<script>
+	const lat = 21.0285, lon = 105.8522;
+	const apiKey = 'fb93b0f46bfb4d21f1bcaab7f9bd14c4';
+	fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=vi`)
+		.then(r => r.json())
+		.then(data => {
+			const location = data.name || 'Hà Nội';
+			const weather = data.weather[0].description;
+			const temp = data.main.temp;
+			const humidity = data.main.humidity;
+			const wind = data.wind.speed;
+			document.getElementById('weather').innerHTML =
+				`🌍 <strong>${location}</strong> | 🌤 ${weather} | 🌡 ${temp}°C | 💧 Độ ẩm: ${humidity}% | 💨 Gió: ${wind} m/s`;
+		})
+		.catch(() => {
+			document.getElementById('weather').innerText = 'Không thể tải dữ liệu thời tiết.';
+		});
+</script>
+</body>
+</html>

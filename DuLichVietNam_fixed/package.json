@@ -1,0 +1,20 @@
+{
+  "name": "trangwebdulich",
+  "version": "1.0.0",
+  "description": "Trang Web hiển thị địa điểm du lịch ",
+  "license": "ISC",
+  "author": "Đỗ Minh Hoàng _ Nguyễn Trọng Thanh",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.5.0",
+    "nodemon": "^3.1.14"
+  }
+}

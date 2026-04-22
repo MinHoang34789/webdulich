@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <title><%= title %></title>
+</head>
+<body class="bg-light">
+<div class="container">
+  <%- include('navbar') %>
+  <div class="card mt-3">
+    <div class="card-header bg-warning"><i class="bi bi-pencil"></i> Sửa Tỉnh / Thành phố</div>
+    <div class="card-body">
+      <form action="/lop/sua/<%= tinhThanh._id %>" method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label class="form-label">Tên tỉnh / thành phố *</label>
+          <input type="text" class="form-control" name="TenTinhThanh" value="<%= tinhThanh.TenTinhThanh %>" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Vùng miền</label>
+          <select class="form-select" id="selVungMien" onchange="loadLoaiHinh(this.value)">
+            <option value="">-- Chọn vùng miền --</option>
+            <% dsVungMien.forEach(v => { %>
+              <option value="<%= v._id %>"><%= v.TenVungMien %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Loại hình du lịch *</label>
+          <select class="form-select" id="selLoaiHinh" name="maLoaiHinh" required>
+            <% dsLoaiHinh.forEach(lh => { %>
+              <option value="<%= lh._id %>" <%= (tinhThanh.maLoaiHinh?._id?.toString() == lh._id.toString()) ? 'selected' : '' %>>
+                <%= lh.TenLoaiHinh %>
+              </option>
+            <% }) %>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-warning"><i class="bi bi-cloud-arrow-up"></i> Cập nhật</button>
+        <a href="/lop" class="btn btn-secondary ms-2">Quay lại</a>
+      </form>
+    </div>
+  </div>
+  <%- include('footer') %>
+  <%- include('javascript') %>
+</div>
+<script>
+function loadLoaiHinh(maVungMien) {
+  fetch('/lop/api/loaihinh/' + maVungMien)
+    .then(r => r.json())
+    .then(data => {
+      const sel = document.getElementById('selLoaiHinh');
+      sel.innerHTML = '';
+      data.forEach(lh => sel.innerHTML += `<option value="${lh._id}">${lh.TenLoaiHinh}</option>`);
+    });
+}
+</script>
+</body>
+</html>

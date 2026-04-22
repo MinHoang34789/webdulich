@@ -1,0 +1,14 @@
+[
+  { "TenTinhThanh": "Hà Nội", "maLoaiHinh": { "$oid": "665aaa000000000000000103" } },
+  { "TenTinhThanh": "Ninh Bình", "maLoaiHinh": { "$oid": "665aaa000000000000000103" } },
+  { "TenTinhThanh": "Sapa (Lào Cai)", "maLoaiHinh": { "$oid": "665aaa000000000000000102" } },
+  { "TenTinhThanh": "Hà Giang", "maLoaiHinh": { "$oid": "665aaa000000000000000102" } },
+  { "TenTinhThanh": "Đà Nẵng", "maLoaiHinh": { "$oid": "665aaa000000000000000101" } },
+  { "TenTinhThanh": "Hội An (Quảng Nam)", "maLoaiHinh": { "$oid": "665aaa000000000000000104" } },
+  { "TenTinhThanh": "Huế", "maLoaiHinh": { "$oid": "665aaa000000000000000104" } },
+  { "TenTinhThanh": "Nha Trang (Khánh Hòa)", "maLoaiHinh": { "$oid": "665aaa000000000000000101" } },
+  { "TenTinhThanh": "Đà Lạt (Lâm Đồng)", "maLoaiHinh": { "$oid": "665aaa000000000000000104" } },
+  { "TenTinhThanh": "TP. Hồ Chí Minh", "maLoaiHinh": { "$oid": "665aaa000000000000000105" } },
+  { "TenTinhThanh": "Phú Quốc (Kiên Giang)", "maLoaiHinh": { "$oid": "665aaa000000000000000101" } },
+  { "TenTinhThanh": "Cần Thơ", "maLoaiHinh": { "$oid": "665aaa000000000000000106" } }
+]

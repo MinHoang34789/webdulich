@@ -1,0 +1,5 @@
+[
+  { "_id": { "$oid": "665aaa000000000000000001" }, "TenVungMien": "Miền Bắc", "MoTa": "Vùng núi phía Bắc và đồng bằng sông Hồng" },
+  { "_id": { "$oid": "665aaa000000000000000002" }, "TenVungMien": "Miền Trung", "MoTa": "Duyên hải miền Trung và Tây Nguyên" },
+  { "_id": { "$oid": "665aaa000000000000000003" }, "TenVungMien": "Miền Nam", "MoTa": "Đông Nam Bộ và đồng bằng sông Cửu Long" }
+]

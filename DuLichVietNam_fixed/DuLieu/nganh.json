@@ -1,0 +1,8 @@
+[
+  { "_id": { "$oid": "665aaa000000000000000101" }, "TenLoaiHinh": "Du lịch biển", "maVungMien": { "$oid": "665aaa000000000000000002" } },
+  { "_id": { "$oid": "665aaa000000000000000102" }, "TenLoaiHinh": "Du lịch núi / sinh thái", "maVungMien": { "$oid": "665aaa000000000000000001" } },
+  { "_id": { "$oid": "665aaa000000000000000103" }, "TenLoaiHinh": "Du lịch văn hóa / lịch sử", "maVungMien": { "$oid": "665aaa000000000000000001" } },
+  { "_id": { "$oid": "665aaa000000000000000104" }, "TenLoaiHinh": "Du lịch nghỉ dưỡng", "maVungMien": { "$oid": "665aaa000000000000000002" } },
+  { "_id": { "$oid": "665aaa000000000000000105" }, "TenLoaiHinh": "Du lịch đô thị / ẩm thực", "maVungMien": { "$oid": "665aaa000000000000000003" } },
+  { "_id": { "$oid": "665aaa000000000000000106" }, "TenLoaiHinh": "Du lịch miệt vườn / sông nước", "maVungMien": { "$oid": "665aaa000000000000000003" } }
+]

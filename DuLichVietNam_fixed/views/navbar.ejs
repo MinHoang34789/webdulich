@@ -1,0 +1,56 @@
+<nav class="navbar" style="background-color: #e8f5e9;" data-bs-theme="light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="/"><i class="bi bi-map"></i> 🌴 Địa Điểm Du Lịch Việt Nam</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+			aria-expanded="false">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+				<% if(typeof session==="undefined" || !session.MaNguoiDung) { %>
+					<li class="nav-item">
+						<a class="nav-link" href="/dangky"><i class="bi bi-person-plus-fill"></i> Đăng ký</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/dangnhap"><i class="bi bi-box-arrow-in-right"></i> Đăng nhập</a>
+					</li>
+					<% } else { %>
+						<% if(session.QuyenHan=="admin" ) { %>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+									aria-expanded="false">
+									<i class="bi bi-gear"></i> Quản lý
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="/taikhoan"><i class="bi bi-people"></i> Tài khoản</a></li>
+									<hr class="dropdown-divider">
+									<li><a class="dropdown-item" href="/khoa"><i class="bi bi-geo-alt"></i> Vùng miền</a></li>
+									<li><a class="dropdown-item" href="/nganh"><i class="bi bi-tags"></i> Loại hình du lịch</a></li>
+									<li><a class="dropdown-item" href="/lop"><i class="bi bi-pin-map"></i> Tỉnh / Thành phố</a></li>
+								</ul>
+							</li>
+						<% } %>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								<i class="bi bi-person"></i>
+								<%= session.HoVaTen %>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="/hosocanhan"><i class="bi bi-person-badge"></i> Hồ sơ cá nhân</a></li>
+								<li><a class="dropdown-item" href="/sinhvien"><i class="bi bi-card-checklist"></i> Danh sách Địa điểm</a></li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/dangxuat"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
+						</li>
+					<% } %>
+			</ul>
+			<form action="/timkiem" class="d-flex" role="search">
+				<input class="form-control me-2" type="search" name="tukhoa" placeholder="Tìm địa điểm du lịch..." />
+				<button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+			</form>
+		</div>
+	</div>
+</nav>

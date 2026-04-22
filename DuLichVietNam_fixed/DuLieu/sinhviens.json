@@ -1,0 +1,67 @@
+[
+  {
+    "maDiaDiem": "DD001", "tenDiaDiem": "Hồ Hoàn Kiếm", "moTa": "Hồ nước đẹp giữa lòng Hà Nội, gắn liền với truyền thuyết Rùa Vàng",
+    "diaChi": "Đinh Tiên Hoàng, Hoàn Kiếm, Hà Nội", "gioMoCua": "Cả ngày", "giaVe": "Miễn phí",
+    "hinhAnh": "hoan_kiem.jpg", "kinhDo": 105.8522, "viDo": 21.0285
+  },
+  {
+    "maDiaDiem": "DD002", "tenDiaDiem": "Văn Miếu - Quốc Tử Giám", "moTa": "Trường đại học đầu tiên của Việt Nam, di tích lịch sử quan trọng",
+    "diaChi": "Văn Miếu, Đống Đa, Hà Nội", "gioMoCua": "08:00 - 17:00", "giaVe": "30.000 đồng",
+    "hinhAnh": "van_mieu.jpg", "kinhDo": 105.8355, "viDo": 21.0267
+  },
+  {
+    "maDiaDiem": "DD003", "tenDiaDiem": "Tràng An", "moTa": "Quần thể danh thắng sinh thái, di sản thế giới UNESCO tại Ninh Bình",
+    "diaChi": "Trường Yên, Hoa Lư, Ninh Bình", "gioMoCua": "07:00 - 17:30", "giaVe": "250.000 đồng",
+    "hinhAnh": "trang_an.jpg", "kinhDo": 105.9170, "viDo": 20.2635
+  },
+  {
+    "maDiaDiem": "DD004", "tenDiaDiem": "Ruộng bậc thang Mù Cang Chải", "moTa": "Danh thắng ruộng bậc thang tuyệt đẹp, đặc biệt vào mùa lúa chín tháng 9-10",
+    "diaChi": "Mù Cang Chải, Yên Bái", "gioMoCua": "Cả ngày", "giaVe": "Miễn phí",
+    "hinhAnh": "mu_cang_chai.jpg", "kinhDo": 104.0833, "viDo": 21.8667
+  },
+  {
+    "maDiaDiem": "DD005", "tenDiaDiem": "Cột cờ Lũng Cú", "moTa": "Điểm địa đầu cực Bắc của Tổ quốc trên cao nguyên đá Đồng Văn",
+    "diaChi": "Lũng Cú, Đồng Văn, Hà Giang", "gioMoCua": "07:00 - 18:00", "giaVe": "15.000 đồng",
+    "hinhAnh": "lung_cu.jpg", "kinhDo": 105.3358, "viDo": 23.3589
+  },
+  {
+    "maDiaDiem": "DD006", "tenDiaDiem": "Bãi biển Mỹ Khê", "moTa": "Một trong những bãi biển đẹp nhất hành tinh, cát trắng mịn, nước trong xanh",
+    "diaChi": "Sơn Trà, Đà Nẵng", "gioMoCua": "Cả ngày", "giaVe": "Miễn phí",
+    "hinhAnh": "my_khe.jpg", "kinhDo": 108.2533, "viDo": 16.0544
+  },
+  {
+    "maDiaDiem": "DD007", "tenDiaDiem": "Phố cổ Hội An", "moTa": "Đô thị cổ được UNESCO công nhận di sản văn hóa thế giới, nổi tiếng với đèn lồng",
+    "diaChi": "Minh An, Hội An, Quảng Nam", "gioMoCua": "Cả ngày", "giaVe": "120.000 đồng",
+    "hinhAnh": "hoi_an.jpg", "kinhDo": 108.3261, "viDo": 15.8801
+  },
+  {
+    "maDiaDiem": "DD008", "tenDiaDiem": "Đại Nội Huế", "moTa": "Cố đô của triều Nguyễn - quần thể cung điện và lăng tẩm hoàng gia",
+    "diaChi": "Thuận Thành, Thừa Thiên Huế", "gioMoCua": "07:00 - 17:30", "giaVe": "200.000 đồng",
+    "hinhAnh": "dai_noi_hue.jpg", "kinhDo": 107.5785, "viDo": 16.4699
+  },
+  {
+    "maDiaDiem": "DD009", "tenDiaDiem": "Vịnh Nha Trang", "moTa": "Một trong những vịnh biển đẹp nhất thế giới, thiên đường du lịch biển",
+    "diaChi": "Nha Trang, Khánh Hòa", "gioMoCua": "Cả ngày", "giaVe": "Miễn phí",
+    "hinhAnh": "nha_trang.jpg", "kinhDo": 109.1967, "viDo": 12.2388
+  },
+  {
+    "maDiaDiem": "DD010", "tenDiaDiem": "Hồ Xuân Hương - Đà Lạt", "moTa": "Trái tim của thành phố ngàn hoa, điểm dạo chơi lãng mạn bậc nhất",
+    "diaChi": "Phường 1, Đà Lạt, Lâm Đồng", "gioMoCua": "Cả ngày", "giaVe": "Miễn phí",
+    "hinhAnh": "ho_xuan_huong.jpg", "kinhDo": 108.4373, "viDo": 11.9404
+  },
+  {
+    "maDiaDiem": "DD011", "tenDiaDiem": "Dinh Độc Lập", "moTa": "Công trình lịch sử quan trọng bậc nhất miền Nam, điểm tham quan không thể bỏ qua",
+    "diaChi": "135 Nam Kỳ Khởi Nghĩa, Quận 1, TP.HCM", "gioMoCua": "07:30 - 12:00 và 13:00 - 16:00", "giaVe": "65.000 đồng",
+    "hinhAnh": "dinh_doc_lap.jpg", "kinhDo": 106.6952, "viDo": 10.7769
+  },
+  {
+    "maDiaDiem": "DD012", "tenDiaDiem": "Phú Quốc - Bãi Dài", "moTa": "Thiên đường biển đảo phía Nam với cát trắng, nước xanh trong vắt",
+    "diaChi": "Gành Dầu, Phú Quốc, Kiên Giang", "gioMoCua": "Cả ngày", "giaVe": "Miễn phí",
+    "hinhAnh": "phu_quoc.jpg", "kinhDo": 103.9800, "viDo": 10.3932
+  },
+  {
+    "maDiaDiem": "DD013", "tenDiaDiem": "Chợ nổi Cái Răng", "moTa": "Chợ nổi sầm uất nhất đồng bằng sông Cửu Long, nét văn hóa độc đáo",
+    "diaChi": "Cái Răng, Cần Thơ", "gioMoCua": "05:00 - 09:00", "giaVe": "Miễn phí",
+    "hinhAnh": "cho_noi.jpg", "kinhDo": 105.7899, "viDo": 10.0133
+  }
+]

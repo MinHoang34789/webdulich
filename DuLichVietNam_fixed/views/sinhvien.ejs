@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/maplibre-gl@3.5.2/dist/maplibre-gl.css" rel="stylesheet" />
+    <style>
+        body { background-color: #f0fdf4; }
+        #mapList { height: 320px; width: 100%; border-radius: 10px; }
+        .card-dd { border: none; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    </style>
+    <title><%= title %></title>
+</head>
+<body>
+<div class="container">
+    <%- include('navbar') %>
+
+    <div class="mt-4">
+        <h2><i class="bi bi-geo-alt-fill text-success"></i> <%= title %></h2>
+
+        <!-- Bộ lọc -->
+        <div class="card card-dd mb-3 p-3">
+            <form id="formLoc" method="get" action="/sinhvien" class="row g-2 align-items-end">
+                <div class="col-auto">
+                    <label class="form-label small fw-bold">Vùng miền</label>
+                    <select class="form-select" name="maVungMien" onchange="loadLoaiHinh(this.value)">
+                        <option value="">-- Chọn vùng miền --</option>
+                        <% dsVungMien.forEach(v => { %>
+                            <option value="<%= v._id %>" <%= (maVungMienDaChon == v._id.toString()) ? 'selected' : '' %>>
+                                <%= v.TenVungMien %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label class="form-label small fw-bold">Loại hình du lịch</label>
+                    <select class="form-select" name="maLoaiHinh" id="selLoaiHinh" onchange="loadTinhThanh(this.value)">
+                        <option value="">-- Chọn loại hình --</option>
+                        <% dsLoaiHinh.forEach(lh => { %>
+                            <option value="<%= lh._id %>" <%= (maLoaiHinhDaChon == lh._id.toString()) ? 'selected' : '' %>>
+                                <%= lh.TenLoaiHinh %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <label class="form-label small fw-bold">Tỉnh / Thành phố</label>
+                    <select class="form-select" name="maTinhThanh" id="selTinhThanh" onchange="document.getElementById('formLoc').submit()">
+                        <option value="">-- Chọn tỉnh/thành --</option>
+                        <% dsTinhThanh.forEach(tt => { %>
+                            <option value="<%= tt._id %>" <%= (maTinhThanhDaChon == tt._id.toString()) ? 'selected' : '' %>>
+                                <%= tt.TenTinhThanh %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <a href="/sinhvien/them<%= maTinhThanhDaChon ? ('?maTinhThanh=' + maTinhThanhDaChon) : '' %>"
+                        class="btn btn-success">
+                        <i class="bi bi-plus-lg"></i> Thêm địa điểm
+                    </a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Bản đồ nhỏ nếu có địa điểm -->
+        <% if (dsDiaDiem.length > 0) { %>
+        <div class="mb-3">
+            <div id="mapList"></div>
+        </div>
+        <% } %>
+
+        <!-- Bảng danh sách -->
+        <div class="card card-dd">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tên địa điểm</th>
+                            <th>Địa chỉ</th>
+                            <th>Giờ mở cửa</th>
+                            <th>Giá vé</th>
+                            <th>Loại hình</th>
+                            <th>Tỉnh/Thành</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (!maVungMienDaChon || !maLoaiHinhDaChon || !maTinhThanhDaChon) { %>
+                            <tr>
+                                <td colspan="8" class="text-center text-muted py-4">
+                                    <i class="bi bi-funnel" style="font-size:2rem"></i><br>
+                                    Vui lòng chọn vùng miền, loại hình và tỉnh/thành để hiển thị danh sách địa điểm
+                                </td>
+                            </tr>
+                        <% } else if (dsDiaDiem.length === 0) { %>
+                            <tr>
+                                <td colspan="8" class="text-center py-3">Chưa có địa điểm nào trong tỉnh/thành này</td>
+                            </tr>
+                        <% } else { %>
+                            <% dsDiaDiem.forEach(dd => { %>
+                                <tr>
+                                    <td><span class="badge bg-success"><%= dd.maDiaDiem %></span></td>
+                                    <td><a href="/sinhvien/chitiet/<%= dd._id %>" class="fw-bold text-decoration-none text-dark"><%= dd.tenDiaDiem %></a></td>
+                                    <td><small><%= dd.diaChi || '—' %></small></td>
+                                    <td><small><%= dd.gioMoCua || '—' %></small></td>
+                                    <td><small class="text-success fw-bold"><%= dd.giaVe || '—' %></small></td>
+                                    <td><small><%= dd.maLoaiHinh?.TenLoaiHinh || '' %></small></td>
+                                    <td><small><%= dd.maTinhThanh?.TenTinhThanh || '' %></small></td>
+                                    <td>
+                                        <a href="/sinhvien/chitiet/<%= dd._id %>" class="btn btn-info btn-sm"><i class="bi bi-map"></i></a>
+                                        <a href="/sinhvien/sua/<%= dd._id %>" class="btn btn-warning btn-sm">Sửa</a>
+                                        <a href="/sinhvien/xoa/<%= dd._id %>" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Xóa địa điểm này?')">Xoá</a>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <%- include('footer') %>
+    <%- include('javascript') %>
+</div>
+
+<script src="https://unpkg.com/maplibre-gl@3.5.2/dist/maplibre-gl.js"></script>
+<script>
+function loadLoaiHinh(maVungMien) {
+    if (!maVungMien) return;
+    fetch('/sinhvien/api/loaihinh/' + maVungMien)
+        .then(r => r.json())
+        .then(data => {
+            const sel = document.getElementById('selLoaiHinh');
+            sel.innerHTML = '<option value="">-- Chọn loại hình --</option>';
+            data.forEach(lh => sel.innerHTML += `<option value="${lh._id}">${lh.TenLoaiHinh}</option>`);
+            document.getElementById('selTinhThanh').innerHTML = '<option value="">-- Chọn tỉnh/thành --</option>';
+        });
+}
+function loadTinhThanh(maLoaiHinh) {
+    if (!maLoaiHinh) return;
+    fetch('/sinhvien/api/tinhthanh/' + maLoaiHinh)
+        .then(r => r.json())
+        .then(data => {
+            const sel = document.getElementById('selTinhThanh');
+            sel.innerHTML = '<option value="">-- Chọn tỉnh/thành --</option>';
+            data.forEach(tt => sel.innerHTML += `<option value="${tt._id}">${tt.TenTinhThanh}</option>`);
+        });
+}
+
+<% if (dsDiaDiem.length > 0) { %>
+const dsDiaDiem = <%- JSON.stringify(dsDiaDiem.map(d => ({
+    id: d._id, ten: d.tenDiaDiem, lng: d.kinhDo, lat: d.viDo
+}))) %>;
+const map = new maplibregl.Map({
+    container: 'mapList',
+    style: 'https://api.maptiler.com/maps/streets/style.json?key=mztyHSEledNaviiGfWNU',
+    center: [dsDiaDiem[0].lng || 106, dsDiaDiem[0].lat || 16],
+    zoom: 10
+});
+map.addControl(new maplibregl.NavigationControl());
+dsDiaDiem.forEach(d => {
+    if (d.lng && d.lat) {
+        new maplibregl.Marker({ color: '#2e7d32' })
+            .setLngLat([d.lng, d.lat])
+            .setPopup(new maplibregl.Popup().setHTML('<b>' + d.ten + '</b>'))
+            .addTo(map);
+    }
+});
+<% } %>
+</script>
+</body>
+</html>
